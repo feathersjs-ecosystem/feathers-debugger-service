@@ -77,5 +77,12 @@ trace({
   captureResult: true,  // captures hook.result, default is false (optional)
   captureQuery: true // captures hook.params.query, default is false (optional)
 })
+```
 
+## Deploy to npm
 
+Manually bump `package.json`, then push with exact version:
+
+```bash
+git commit -m "Release 1.0.1"
+```
