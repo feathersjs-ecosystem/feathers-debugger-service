@@ -18,8 +18,8 @@ const configureService = (options = {}) => (app) => {
     expireAfterSeconds: options.expireAfterSeconds || 900, // 15 min
   });
 
-  const debuggerService = app.use('/feathers-debugger', service({ Model }));
-  debuggerService.hooks(hooks({ Model }));
+  app.use('/feathers-debugger', service({ Model }));
+  app.service('feathers-debugger').hooks(hooks({ Model }));
 };
 
 module.exports = configureService;
