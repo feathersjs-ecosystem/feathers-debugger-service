@@ -32,7 +32,7 @@ if (process.env.NODE_ENV !== 'production') // enable it only on development
 ```
 
 
-## Add tracer() to Hooks
+## Add trace() to Hooks
 
 If you want to trace all requests, add it to `app.hooks`. You can also add it manually to only certain services you want to trace.
 
