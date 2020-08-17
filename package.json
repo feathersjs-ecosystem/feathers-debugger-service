@@ -6,9 +6,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "feathers",
+    "feathersjs",
+    "feathers-debugger",
+    "feathers-debugger-service",
+    "feathers-hooks",
+    "chrome",
+    "extension"
+  ],
+  "author": "Dan Radenkovic",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/radenkovic/feathers-debugger-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/radenkovic/feathers-debugger-service/issues",
+    "email": "dan@radenkovic.org"
+  },
   "devDependencies": {
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
