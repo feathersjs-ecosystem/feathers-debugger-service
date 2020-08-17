@@ -23,13 +23,12 @@ const debuggerService = require('feathers-debugger-service');
 const app = express(feathers());
 app.configure(services);
 app.hooks(hooks);
-// ...
 
 if (process.env.NODE_ENV !== 'production') // enable it only on development
   app.configure(debuggerService({
     expireAfterSeconds: 10,  // optional, default is 900 (15 minutes)
     filename: 'debugger.db' // optional, if you want to persist data in file (uses feathers-nedb)
-}));
+  }));
 ```
 
 
@@ -64,7 +63,7 @@ Service configuration options
 
 ```js
 app.configure(debuggerService({
-  expireAfterSeconds: 900 // Expire item in storage after x seconds, default is 900 (optional)
+  expireAfterSeconds: 900, // Expire item in storage after x seconds, default is 900 (optional)
   filename: 'nedb.db' // set filename if you want to persist data (optional)
 }))
 ```
