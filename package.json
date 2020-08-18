@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "feathers-nedb": "^5.1.0",
+    "lodash": "^4.17.20",
     "nedb": "^1.8.0"
   }
 }

@@ -13,6 +13,10 @@ module.exports = (
 
   if (!ctx._req_ts) {
     ctx._req_ts = Date.now();
+    if (!ctx.params.provider) {
+      // Add artificial 1ms
+      ctx._req_ts += 1;
+    }
   } else {
     ctx._req_duration = Date.now() - ctx._req_ts;
   }

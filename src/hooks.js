@@ -1,5 +1,16 @@
 const packageJson = require('../package.json');
 
+const quantile = (sorted, q) => {
+  const pos = (sorted.length - 1) * q;
+  const base = Math.floor(pos);
+  const rest = pos - base;
+  if (sorted[base + 1] !== undefined) {
+    return sorted[base] + rest * (sorted[base + 1] - sorted[base]);
+  } else {
+    return sorted[base];
+  }
+};
+
 module.exports = ({ Model }) => ({
   before: {
     find: [
@@ -25,7 +36,14 @@ module.exports = ({ Model }) => ({
   after: {
     find: [
       (ctx) => {
+        const sortedDuration = [...ctx.result]
+          .sort((a, b) => a.duration - b.duration)
+          .map((x) => x.duration);
         ctx.result = {
+          stats: {
+            p90: quantile(sortedDuration, 0.9),
+            p95: quantile(sortedDuration, 0.95),
+          },
           service_version: packageJson.version,
           data: ctx.result,
         };
