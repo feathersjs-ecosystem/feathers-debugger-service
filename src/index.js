@@ -2,8 +2,12 @@ const NeDB = require('nedb');
 const service = require('feathers-nedb');
 const traceHook = require('./trace');
 const hooks = require('./hooks');
+const path = require('path');
+const express = require('@feathersjs/express'); // eslint-disable-line
 
-const configureService = (options = {}) => (app) => {
+const configureService = (options = { ui: false, publicUrl: '/debugger' }) => (
+  app
+) => {
   // Create a NeDB instance
   const Model = new NeDB({
     filename: options.filename,
@@ -20,6 +24,16 @@ const configureService = (options = {}) => (app) => {
 
   app.use('/feathers-debugger', service({ Model }));
   app.service('feathers-debugger').hooks(hooks({ Model }));
+  // Expose UI on endpoint if ui: true
+  if (options.ui) {
+    const publicUrl = options.publicUrl || '/debugger';
+    const target = path.join(
+      __dirname,
+      '../node_modules/feathers-debugger/dist'
+    );
+    console.log('✨ Feathers Debugger exposed on:', publicUrl);
+    app.use(publicUrl, express.static(target));
+  }
 };
 
 module.exports = configureService;

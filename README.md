@@ -64,7 +64,9 @@ Service configuration options
 ```js
 app.configure(debuggerService({
   expireAfterSeconds: 900, // Expire item in storage after x seconds, default is 900 (optional)
-  filename: 'nedb.db' // set filename if you want to persist data (optional)
+  filename: 'nedb.db', // set filename if you want to persist data (optional)
+  ui: true // if you want to expose UI on publicUrl (default is false) and debug without chrome extension
+  publicUrl: '/debugger' // set custom url for debugger (default is /debugger), used only if ui: true
 }))
 ```
 

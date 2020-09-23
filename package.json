@@ -26,6 +26,7 @@
     "email": "dan@radenkovic.org"
   },
   "devDependencies": {
+    "@feathersjs/express": "^4.x.x",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-node": "^0.3.4",
@@ -35,7 +36,11 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
+    "feathers-debugger": "^1.x.x",
     "feathers-nedb": "^5.1.0",
     "nedb": "^1.8.0"
+  },
+  "peerDependencies": {
+    "@feathersjs/express": "^4.x.x"
   }
 }

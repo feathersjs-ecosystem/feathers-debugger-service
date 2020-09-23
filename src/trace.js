@@ -3,16 +3,18 @@ module.exports = (
 ) => async (ctx) => {
   const service = ctx.app.service('feathers-debugger');
 
-  // Error Message if service is not registered
+  // Skip the hook if service is not registered
   if (!service) {
-    return console.warn(
-      'WARN: Service feathers-debuger is not registered, feathers debugger tracing is disabled. Please check Feathers Debugger documentation on how to setup: https://github.com/radenkovic/feathers-debugger.'
-    );
+    return;
   }
   if (ctx.path === 'feathers-debugger') return;
 
   if (!ctx._req_ts) {
     ctx._req_ts = Date.now();
+    if (!ctx.params.provider) {
+      // Add artificial 1ms
+      ctx._req_ts += 1;
+    }
   } else {
     ctx._req_duration = Date.now() - ctx._req_ts;
   }
@@ -25,7 +27,7 @@ module.exports = (
     provider: ctx.params ? ctx.params.provider : undefined,
     ts: ctx._req_ts,
     duration: ctx._req_duration,
-    data: ctx.data,
+    data: JSON.stringify(ctx.data),
     error: ctx.error ? ctx.error.message : undefined,
     end: Date.now(),
   };
