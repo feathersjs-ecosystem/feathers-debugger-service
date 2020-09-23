@@ -27,7 +27,7 @@ const configureService = (options = { ui: false, publicUrl: '/debugger' }) => (
   // Expose UI on endpoint if ui: true
   if (options.ui) {
     const publicUrl = options.publicUrl || '/debugger';
-    const target = path.join(__dirname, '../feathers-debugger/dist');
+    const target = path.join(__dirname, '../../feathers-debugger/dist');
     console.log('✨ Feathers Debugger exposed on:', publicUrl);
     app.use(publicUrl, express.static(target));
   }
