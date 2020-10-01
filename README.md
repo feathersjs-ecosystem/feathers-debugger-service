@@ -24,11 +24,12 @@ const app = express(feathers());
 app.configure(services);
 app.hooks(hooks);
 
-if (process.env.NODE_ENV !== 'production') // enable it only on development
-  app.configure(debuggerService({
-    expireAfterSeconds: 10,  // optional, default is 900 (15 minutes)
-    filename: 'debugger.db' // optional, if you want to persist data in file (uses feathers-nedb)
-  }));
+// enable it only on development
+if (process.env.NODE_ENV !== 'production') {
+  // the service comes with default options predefined,
+  // you can override it if you wish to, see Options below
+  app.configure(debuggerService());
+}
 ```
 
 
@@ -63,10 +64,22 @@ Service configuration options
 
 ```js
 app.configure(debuggerService({
-  expireAfterSeconds: 900, // Expire item in storage after x seconds, default is 900 (optional)
-  filename: 'nedb.db', // set filename if you want to persist data (optional)
-  ui: true // if you want to expose UI on publicUrl (default is false) and debug without chrome extension
-  publicUrl: '/debugger' // set custom url for debugger (default is /debugger), used only if ui: true
+  /**
+   * Expire item in storage after 900 seconds (15 min)
+   */
+  expireAfterSeconds: 900,
+  /**
+   * Set filename if you want to persist data (uses feathers-nedb)
+   */
+  filename: 'nedb.db',
+  /**
+   * If you want to expose UI on publicUrl and debug without chrome extension
+   */
+  ui: false,
+  /**
+   * Set custom url for debugger, used only if ui is `true`
+   */
+  publicUrl: '/debugger'
 }))
 ```
 
