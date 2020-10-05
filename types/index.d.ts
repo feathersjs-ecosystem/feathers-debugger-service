@@ -12,11 +12,11 @@ export interface DebuggerServiceOptions {
   /**
    * Whether to expose UI on publicUrl (default is false) and debug without chrome extension
    */
-  ui: boolean;
+  ui?: boolean;
   /**
    * If UI is exposed, define custom url for debugger (default is /debugger)
    */
-  publicUrl: string;
+  publicUrl?: string;
 }
 
 declare const debuggerService: (options?: DebuggerServiceOptions) => (app: Application) => void;
