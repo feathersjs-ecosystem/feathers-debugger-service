@@ -1,9 +1,8 @@
 {
   "name": "feathers-debugger-service",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Feathers debugger service (For feathers debugger chrome extension)",
   "main": "src/index.js",
-  "types": "types",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
