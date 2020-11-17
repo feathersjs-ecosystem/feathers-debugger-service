@@ -98,5 +98,5 @@ trace({
 Manually bump `package.json`, then push with exact version:
 
 ```bash
-git commit -m "Release 1.0.1"
+git commit -m "Release 1.3.5"
 ```
